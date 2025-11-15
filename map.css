@@ -12,22 +12,21 @@ body {
     overflow: hidden;
 }
 
+/* Canvas underlay */
 #map canvas {
     position: absolute;
     inset: 0;
     z-index: 0;
-    /* put canvas at the bottom of this stacking context */
 }
 
+/* SVG overlay */
 #map svg {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    /* already there is fine */
     z-index: 1;
-    /* put overlay above the canvas */
 }
 
 /* Circles themselves can still receive hover/click */
@@ -47,5 +46,8 @@ body {
     --color: color-mix(in oklch,
             var(--color-departures) calc(100% * var(--departure-ratio)),
             var(--color-arrivals));
+    background-color: var(--color);
+    /* for legend blocks */
     fill: var(--color);
+    /* for circles */
 }

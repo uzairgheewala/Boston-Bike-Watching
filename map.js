@@ -242,23 +242,18 @@ map.on("load", async () => {
     .attr("stroke", "white")
     .attr("stroke-width", 1)
     .attr("opacity", 0.7)
-    // size & tooltip & color
-    .attr("r", (d) => {
-      const r = radiusScale(d.totalTraffic);
-      return r;
-    })
+    .attr("r", (d) => radiusScale(d.totalTraffic))
     .style("--departure-ratio", (d) =>
-      d.totalTraffic > 0
+        d.totalTraffic > 0
         ? stationFlow(d.departures / d.totalTraffic)
-        : 0.5
+        : 0.5 // neutral grey-ish when no traffic
     )
     .each(function (d) {
-      const sel = d3.select(this);
-      sel.select("title").remove();
-      sel
+        d3.select(this).select("title").remove();
+        d3.select(this)
         .append("title")
         .text(
-          `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
+            `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
         );
     });
 
@@ -364,27 +359,26 @@ map.on("load", async () => {
     stations = filteredStations;
 
     circles = svg
-      .selectAll("circle")
-      .data(stations, (d) => d.short_name)
-      .join("circle")
-      .attr("stroke", "white")
-      .attr("stroke-width", 1)
-      .attr("opacity", 0.7)
-      .attr("r", (d) => radiusScale(d.totalTraffic))
-      .style("--departure-ratio", (d) =>
-        d.totalTraffic > 0
-          ? stationFlow(d.departures / d.totalTraffic)
-          : 0.5
-      )
-      .each(function (d) {
-        const sel = d3.select(this);
-        sel.select("title").remove();
-        sel
-          .append("title")
-          .text(
-            `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
-          );
-      });
+        .selectAll("circle")
+        .data(stations, (d) => d.short_name)
+        .join("circle")
+        .attr("stroke", "white")
+        .attr("stroke-width", 1)
+        .attr("opacity", 0.7)
+        .attr("r", (d) => radiusScale(d.totalTraffic))
+        .style("--departure-ratio", (d) =>
+            d.totalTraffic > 0
+            ? stationFlow(d.departures / d.totalTraffic)
+            : 0.5
+        )
+        .each(function (d) {
+            d3.select(this).select("title").remove();
+            d3.select(this)
+            .append("title")
+            .text(
+                `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
+            );
+        });
 
     console.log(
       "[circles] After filter, circle count:",
