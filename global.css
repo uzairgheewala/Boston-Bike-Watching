@@ -19,3 +19,50 @@ h1 {
     font-size: 2rem;
     margin: 0;
 }
+
+header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+header>div p {
+    margin: 0.25rem 0 0;
+}
+
+.time-filter {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+}
+
+#time-slider {
+    width: 14rem;
+}
+
+#selected-time,
+#any-time {
+    display: block;
+}
+
+#any-time {
+    font-style: italic;
+    color: #666;
+}
+
+/* Legend for arrivals/departures */
+.legend {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 2px;
+    font-size: 0.9rem;
+}
+
+.legend>div {
+    flex: 1;
+    padding: 0.4rem 0.7rem;
+    text-align: center;
+    color: #fff;
+}

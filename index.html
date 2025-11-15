@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boston Bikewatching</title>
+    <title>Bikewatching</title>
 
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="global.css" />
@@ -18,14 +18,28 @@
 
 <body>
     <header>
-        <h1>🚴 Bikewatching</h1>
-        <p>Boston-area Bluebikes traffic on an interactive Mapbox map.</p>
+        <div>
+            <h1>🚴 Bikewatching</h1>
+            <!-- <p>Boston-area Bluebikes traffic on an interactive Mapbox map.</p> -->
+        </div>
+    
+        <label class="time-filter">
+            <span>Filter by time:</span>
+            <input id="time-slider" type="range" min="-1" max="1440" value="-1" />
+            <time id="selected-time"></time>
+            <em id="any-time">(any time)</em>
+        </label>
     </header>
     
     <main>
         <div id="map">
-            <!-- SVG overlay for stations -->
-            <svg></svg>
+            <!-- <svg></svg> -->
+        </div>
+    
+        <div class="legend">
+            <div style="--departure-ratio: 1">More departures</div>
+            <div style="--departure-ratio: 0.5">Balanced</div>
+            <div style="--departure-ratio: 0">More arrivals</div>
         </div>
     </main>
 </body>
